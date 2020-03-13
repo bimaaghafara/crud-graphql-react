@@ -5,13 +5,13 @@ import React, {Component, Fragment} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // pages
+import { User } from './modules/user/user';
 
 
 // router
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 function Home() {return (<div>Home</div>)}
-function User() {return (<div>User</div>)}
 function Post() {return (<div>Post</div>)}
 
 class App extends Component {
