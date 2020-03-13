@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 
 // styles
 // import './App.css';
@@ -18,34 +18,39 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        activeMenu: 'home'
+        activeMenu: 'home',
+        menus: [
+          {key:"home", label:"Home", link:"/"},
+          {key:"user", label:"User", link:"/user"},
+          {key:"post", label:"Post", link:"/post"}
+        ]
     };
   }
 
   render() {
-
-    const Menu = ({ menu }) => (
-      <li style={{'paddingTop': '8px'}}>
-        <Link 
-          to={menu.link}
-          onClick={() => {
-            this.setState({activeMenu: menu.key}
-          )}}
-          className={'nav btn btn-' + (this.state.activeMenu===menu.key? 'success' : 'default')}
-          >{menu.label}</Link>
-      </li>
-    );
+    const Menus = ({ menus }) => (
+      <ul>
+        {menus.map(menu =>
+          <li key={menu.key} style={{'paddingTop': '8px'}}>
+            <Link 
+              to={menu.link}
+              onClick={() => {
+                this.setState({activeMenu: menu.key}
+              )}}
+              className={'nav btn btn-' + (this.state.activeMenu===menu.key? 'success' : 'default')}
+              >{menu.label}</Link>
+          </li>
+        )}
+      </ul>
+    )
 
     return (
       <div className="App">
         <Router>
           <div style={{'padding': '25px 50px'}}>
             <h4>Please Select One Menu:</h4>
-            <ul>
-              <Menu menu={{key:"home", label:"Home", link:"/"}}/>
-              <Menu menu={{key:"user", label:"User", link:"/user"}}/>
-              <Menu menu={{key:"post", label:"Post", link:"/post"}}/>
-            </ul>
+            <Menus menus={this.state.menus} />
+
             <hr />
             <Route exact path="/" component={Home} />
             <Route exact path="/user" component={User} />
