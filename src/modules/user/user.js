@@ -13,8 +13,8 @@ export class User extends Component {
     this.state = {
       activeMenu: '',
       menus: [
-        {key:"add", label:"Add User", link:`${this.props.match.url}/add`},
-        {key:"list", label:"List User", link:`${this.props.match.url}`}
+        {key:"list", label:"List User", link:`${this.props.match.url}`},
+        {key:"add", label:"Add User", link:`${this.props.match.url}/add`}
       ],
       routes: [
         {exact: true, path:`${this.props.match.url}`, render: () => (
@@ -37,7 +37,7 @@ export class User extends Component {
     const Menus = ({ menus }) => (
       <ul>
         {menus.map(menu =>
-          <li key={menu.key} style={{'paddingTop': '8px'}}>
+          <li key={menu.key} style={{'padding': '4px', 'display': 'inline-block'}}>
             <Link 
               to={menu.link}
               onClick={() => {

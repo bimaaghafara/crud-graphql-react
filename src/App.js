@@ -31,7 +31,7 @@ class App extends Component {
     const Menus = ({ menus }) => (
       <ul>
         {menus.map(menu =>
-          <li key={menu.key} style={{'paddingTop': '8px'}}>
+          <li key={menu.key} style={{'padding': '4px', 'display': 'inline-block'}}>
             <Link 
               to={menu.link}
               onClick={() => {
