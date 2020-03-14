@@ -53,8 +53,8 @@ class App extends Component {
 
             <hr />
             <Route exact path="/" component={Home} />
-            <Route exact path="/user" component={User} />
-            <Route exact path="/post" component={Post} />
+            <Route path="/user" component={User} />
+            <Route path="/post" component={Post} />
           </div>
         </Router>
       </div>

@@ -1,3 +1,8 @@
 import React from 'react';
 
-export function UserList() {return (<div>UserList</div>)}
+// router
+import { withRouter } from 'react-router-dom';
+
+function UserListComponent(props) {return (<div>UserList</div>)}
+
+export const UserList = withRouter(UserListComponent)

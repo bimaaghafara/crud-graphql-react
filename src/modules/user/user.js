@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 // pages
 import { UserForm } from './user-form/user-form';
@@ -15,6 +15,20 @@ export class User extends Component {
       menus: [
         {key:"add", label:"Add User", link:`${this.props.match.url}/add`},
         {key:"list", label:"List User", link:`${this.props.match.url}`}
+      ],
+      routes: [
+        {exact: true, path:`${this.props.match.url}`, render: () => (
+          <UserList actionType='list'/>
+        )},
+        {exact: false, path:`${this.props.match.url}/add`, render: () => (
+          <UserForm actionType='add'/>
+        )},
+        {exact: false, path:`${this.props.match.url}/view/:id`, render: () => (
+          <UserForm actionType='view'/>
+        )},
+        {exact: false, path:`${this.props.match.url}/edit/:id`, render: () => (
+          <UserForm actionType='edit'/>
+        )}
       ]
     };
   }
@@ -36,6 +50,14 @@ export class User extends Component {
       </ul>
     )
 
+    const Routes = ({ routes }) => (
+      <Fragment>
+        {routes.map(route =>
+          <Route key={route.path} exact={route.exact} path={route.path} render={route.render}/>
+        )}
+      </Fragment>
+    )
+
     return (
       <div className="Page-User">
         <div>
@@ -44,30 +66,7 @@ export class User extends Component {
 
           <hr></hr>
 
-          <Route
-            exact path={`${this.props.match.url}`} 
-            render={(props) => (
-              <UserList actionType='list' parentProps={props}/>
-            )}
-          />
-          <Route
-            path={`${this.props.match.url}/add`}
-            render={(props) => (
-              <UserForm actionType='add' parentProps={props}/>
-            )}
-          />
-          <Route
-            path={`${this.props.match.url}/view/:id`}
-            render={(props) => (
-              <UserForm actionType='view' id={props.match.params.id} parentProps={props}/>
-            )}
-          />
-          <Route
-            path={`${this.props.match.url}/edit/:id`}
-            render={(props) => (
-              <UserForm  actionType='edit' id={props.match.params.id} parentProps={props}/>
-            )}
-          />
+          <Routes routes={this.state.routes} />
         </div>
       </div>
     )
