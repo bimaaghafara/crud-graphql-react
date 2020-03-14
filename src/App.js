@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 
 // styles
 // import './App.css';
@@ -18,13 +18,33 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        activeMenu: 'home',
+        activeMenu: '',
         menus: [
           {key:"home", label:"Home", link:"/"},
           {key:"user", label:"User", link:"/user"},
           {key:"post", label:"Post", link:"/post"}
         ]
     };
+  }
+
+  setActiveMenu() {
+    setTimeout(() => {
+      let activeMenu = window.location.pathname.split('/')[1];
+      if (activeMenu == "") {
+        activeMenu = "home"
+      }
+      if (this.state.activeMenu != activeMenu) {
+        this.setState({activeMenu: activeMenu})
+      }
+    })
+  }
+
+  componentDidUpdate() {
+    this.setActiveMenu();
+  }
+
+  componentDidMount() {
+    this.setActiveMenu();
   }
 
   render() {
@@ -34,9 +54,7 @@ class App extends Component {
           <li key={menu.key} style={{'padding': '4px', 'display': 'inline-block'}}>
             <Link 
               to={menu.link}
-              onClick={() => {
-                this.setState({activeMenu: menu.key}
-              )}}
+              onClick={() => this.setActiveMenu()}
               className={'nav btn btn-' + (this.state.activeMenu===menu.key? 'success' : 'default')}
               >{menu.label}</Link>
           </li>

@@ -11,7 +11,7 @@ export class User extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeMenu: '',
+      activeMenu: "",
       menus: [
         {key:"list", label:"List User", link:`${this.props.match.url}`},
         {key:"add", label:"Add User", link:`${this.props.match.url}/add`}
@@ -33,6 +33,31 @@ export class User extends Component {
     };
   }
 
+  setActiveMenu() {
+    setTimeout(() => {
+      const path = window.location.pathname.split('/')[2];
+      let activeMenu;
+      if (!path) {
+        activeMenu = "list"
+      } else if (path == "add") {
+        activeMenu = "add"
+      } else if (path == "view" || path == "edit") {
+        activeMenu = ""
+      }
+      if (this.state.activeMenu != activeMenu) {
+        this.setState({activeMenu: activeMenu})
+      }
+    })
+  }
+
+  componentDidUpdate() {
+    this.setActiveMenu();
+  }
+
+  componentDidMount() {
+    this.setActiveMenu();
+  }
+
   render() {
     const Menus = ({ menus }) => (
       <ul>
@@ -40,9 +65,7 @@ export class User extends Component {
           <li key={menu.key} style={{'padding': '4px', 'display': 'inline-block'}}>
             <Link 
               to={menu.link}
-              onClick={() => {
-                this.setState({activeMenu: menu.key}
-              )}}
+              onClick={() => {this.setActiveMenu()}}
               className={'nav btn btn-' + (this.state.activeMenu===menu.key? 'success' : 'default')}
               >{menu.label}</Link>
           </li>
