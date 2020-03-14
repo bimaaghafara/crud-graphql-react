@@ -6,13 +6,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // pages
 import { User } from './modules/user/user';
+import { Post } from './modules/post/post';
 
 
 // router
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 function Home() {return (<div>Home</div>)}
-function Post() {return (<div>Post</div>)}
 
 class App extends Component {
   constructor(props) {
