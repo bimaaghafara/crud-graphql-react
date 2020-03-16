@@ -84,10 +84,10 @@ export class User extends Component {
     return (
       <div className="Page-User">
         <div>
-          <h4>User Menu</h4>
+          {/* <h4>User Menu</h4>
           <Menus menus={this.state.menus} />
 
-          <hr></hr>
+          <hr></hr> */}
 
           <Routes routes={this.state.routes} />
         </div>

@@ -9,7 +9,7 @@ import { User } from './modules/user/user';
 import { Post } from './modules/post/post';
 
 // components
-import {BgMenus} from './shared/components/bg-menu/bg-menu';
+import { CustomMenus } from './shared/components/bg-menu/bg-menu';
 
 // router
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -34,8 +34,9 @@ class App extends Component {
         <Router>
           <div style={{'padding': '25px 50px'}}>
             <h4>Please Select One Menu:</h4>
-            <BgMenus menus={this.state.menus} />
-            <hr />
+            {/* <BgMenus menus={this.state.menus} /> */}
+            <CustomMenus />
+            {/* <hr /> */}
             <Route exact path="/" component={Home} />
             <Route path="/user" component={User} />
             <Route path="/post" component={Post} />

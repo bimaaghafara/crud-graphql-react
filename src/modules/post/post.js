@@ -84,10 +84,10 @@ export class Post extends Component {
     return (
       <div className="Page-Post">
         <div>
-          <h4>Post Menu</h4>
+          {/* <h4>Post Menu</h4>
           <Menus menus={this.state.menus} />
 
-          <hr></hr>
+          <hr></hr> */}
 
           <Routes routes={this.state.routes} />
         </div>
