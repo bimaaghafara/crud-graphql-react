@@ -10,7 +10,7 @@
     "json-graphql-server": "2.1.3",
     "react": "16.13.0",
     "react-dom": "16.13.0",
-    "react-scripts": "3.4.0"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "concurrently --kill-others \"json-graphql-server graphql-server/db.js --p 3333\" \"react-scripts start\"",
